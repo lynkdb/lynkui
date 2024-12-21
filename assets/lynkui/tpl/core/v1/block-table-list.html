@@ -1,0 +1,68 @@
+<div class="lynkui-block">
+  {[? it.box]}
+  <div class="lynkui-block-head d-flex justify-content-between">
+    <div class="lynkui-block-title">{[=it.box.title]}</div>
+    <div class="lynkui-block-toolbar">
+      {[? it.box.toolbar && it.box.toolbar.row_insert_x_data]}
+      <button
+        type="button"
+        class="btn btn-primary btn-sm lynkui-data-row-insert"
+        x_data="{[=it.box.toolbar.row_insert_x_data]}"
+      >
+        New
+      </button>
+      {[?]}
+    </div>
+  </div>
+  {[?]} {[? !it.rows || it.rows.length == 0]}
+  <div class="lynkui-block-body alert alert-light">Data Not Found</div>
+  {[?? it.spec && it.spec.fields && it.spec.fields.length > 0]}
+  <div class="lynkui-block-body lynkui-scroll">
+    <table class="table lynkui-table">
+      <colgroup class="table-row">
+        {[~it._display_fields :field]}
+        <col class="{[=field._style_class]}" />
+        {[~]}
+        <!-- opt-btn -->
+        {[? it.box.opts.update_enable]}
+        <col />
+        {[?]}
+      </colgroup>
+      <thead>
+        <tr class="_table-row">
+          {[~it._display_fields :field]}
+          <th class="{[=field._style_class]}">{[=field.name]}</th>
+          {[~]}
+          <!-- opt-btn -->
+          {[? it.box.opts.update_enable]}
+          <th></th>
+          {[?]}
+        </tr>
+      </thead>
+      <tbody id="data-result-list">
+        {[~it.rows :row]}
+        <tr id="data-row-{[=row.id]}" class="_table-row">
+          {[~it._display_fields :field]}
+          <td id="data-row-{[=row.id]}-field-{[=field.tag_name]}" class="{[=field._style_class]}">
+            {[=lynkui.pagelet.rowFieldValue(it.spec, row, field.tag_name)]}
+          </td>
+          {[~]}
+          <!-- opt-btn -->
+          {[? it.box.opts.update_enable]}
+          <td align="right">
+            <button
+              type="button"
+              class="btn btn-outline-dark btn-sm lynkui-data-row-update"
+              x_data="{[=row.x_data]}"
+            >
+              Edit
+            </button>
+          </td>
+          {[?]}
+        </tr>
+        {[~]}
+      </tbody>
+    </table>
+  </div>
+  {[?]}
+</div>

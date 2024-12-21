@@ -1,0 +1,451 @@
+.lynkui-base-hide {
+  display: none;
+}
+
+.lynkui-base-pull-left {
+  clear: left;
+  float: left;
+}
+
+.lynkui-mb-0 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.lynkui-block {
+  padding: 10px !important;
+  margin: 10px 0 0 10px !important;
+}
+
+.lynkui-block-inline {
+  padding: 0 10px !important;
+  margin: 0 !important;
+}
+
+.lynkui-scroll {
+  overflow: auto;
+}
+.lynkui-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  background-color: #ccc;
+}
+.lynkui-scroll::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+.lynkui-scroll::-webkit-scrollbar-button:start:decrement, .lynkui-scroll::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+.lynkui-scroll::-webkit-scrollbar-thumb:vertical, .lynkui-scroll::-webkit-scrollbar-thumb:horizontal {
+  background-color: #999;
+}
+.lynkui-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+.lynkui-scroll::-webkit-scrollbar-thumb:active {
+  background-color: #444;
+}
+
+.lynkui-form-group {
+  margin-bottom: 15px;
+}
+.lynkui-form-group label {
+  font-weight: bold;
+}
+
+.lynkui-form-control {
+  display: block;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 120%;
+}
+
+.lynkui-layout-module-nav {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* float: left; */
+  /* min-height: 30px !important; */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.lynkui-layout-module-nav:first-child {
+  margin-left: 0 !important;
+}
+
+.lynkui-layout-module-nav > li {
+  position: relative;
+  padding: 0;
+  margin: 0 10px 0 0;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+  line-height: 30px;
+  float: left;
+  border-radius: 2px;
+}
+
+.lynkui-layout-module-nav > li:first-child {
+  /* margin-left: 0; */
+}
+
+.lynkui-layout-module-nav > li > a {
+  padding: 0 10px;
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #777;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.lynkui-layout-module-nav > li > a:hover {
+  padding: 0 10px;
+  display: block;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #777;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.lynkui-layout-module-nav > li.active,
+.lynkui-layout-module-nav > li > a.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.lynkui-layout-module-nav > li.active > a {
+  color: #fff;
+}
+
+.lynkui-layout-module-nav > li.active:after,
+.lynkui-layout-module-nav > li > a.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -6px;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-color: #333 transparent transparent transparent;
+  border-style: solid;
+  border-width: 6px;
+}
+
+.lynkui-layout-module-nav > li.hover,
+.lynkui-layout-module-nav > li > a.hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #777;
+}
+
+.lynkui-layout-module-nav > li.hover_border,
+.lynkui-layout-module-nav > li > a.hover_border {
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+}
+
+.lynkui-layout-module-nav > li.primary,
+.lynkui-layout-module-nav > li > a.primary {
+  background-color: rgb(0, 120, 231);
+  color: #fff;
+}
+
+#lynkui-layout-module-navbar {
+  margin-top: 10px;
+}
+
+#lynkui-layout-module-navbar-optools button {
+  font-size: 10px;
+}
+
+#lynkui-layout-module-navbar-optools input {
+  margin: 0;
+  padding: 2px;
+  height: 30px;
+  font-size: 12px;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+#lynkui-alert-bg {
+  position: fixed;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#lynkui-alert.warn .modal-content {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+
+#lynkui-alert.warn a {
+  color: #523e02;
+}
+
+#lynkui-alert.warn .modal-header {
+  border-bottom: 1px solid #ffc107;
+}
+
+#lynkui-alert.warn .modal-footer {
+  border-top: 1px solid #ffc107;
+}
+
+#lynkui-alert.ok .modal-content {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+#lynkui-alert.ok a {
+  color: #0c4128;
+}
+
+#lynkui-alert.ok .modal-header {
+  border-bottom: 1px solid #198754;
+}
+
+#lynkui-alert.ok .modal-footer {
+  border-top: 1px solid #198754;
+}
+
+#lynkui-alert.error .modal-content {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+#lynkui-alert.error a {
+  color: #6a1a21;
+}
+
+#lynkui-alert.error .modal-header {
+  border-bottom: 1px solid #dc3545;
+}
+
+#lynkui-alert.error .modal-footer {
+  border-top: 1px solid #dc3545;
+}
+
+#lynkui-modal-bg {
+  position: fixed;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#lynkui-modal {
+  z-index: 2000 !important;
+  position: fixed;
+  display: none;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+#lynkui-modal a {
+  text-decoration: none;
+}
+
+.lynkui-modal-header {
+  padding: 5px 10px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #fff;
+  background-color: #343a40;
+  vertical-align: middle !important;
+}
+
+.lynkui-modal-header .close {
+  float: right;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: none !important;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.lynkui-modal-header .close:hover {
+  opacity: 0.8;
+}
+
+#lynkui-modal .title {
+  padding: 10px 0;
+  margin-right: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.lynkui-modal-body {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+
+.lynkui-modal-body-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 16384px;
+  cursor: default;
+}
+
+.lynkui-modal-body-pagelet {
+  display: inline-block;
+  position: relative;
+  overflow-y: auto;
+  top: 0;
+  float: left;
+}
+
+.lynkui-modal-footer {
+  clear: both;
+  margin: 10px;
+  height: 2rem;
+  text-align: right;
+  *zoom: 1;
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.lynkui-modal-footer:before,
+.lynkui-modal-footer:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.lynkui-modal-footer:after {
+  clear: both;
+}
+
+.lynkui-modal-footer .btn {
+  padding: 0.25rem 0.5rem;
+  height: 2rem !important;
+  font-size: 0.875rem !important;
+}
+
+.lynkui-modal-footer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+
+.lynkui-modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+
+.lynkui-modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+
+#lynkui-modal-footer-alert {
+  clear: both;
+  border: 0px;
+  border-radius: 0px;
+  margin: 0;
+  padding: calc(0.25rem + 10px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.lynkui-formtable,
+.lynkui-formtable table {
+  width: 100%;
+}
+
+.lynkui-formtable table.valign-middle td,
+.lynkui-formtable table.valign-middle th {
+  vertical-align: middle !important;
+}
+
+.lynkui-formtable-row-line,
+.lynkui-formtable-tr-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.lynkui-formtable-tr-line:last-child {
+  border-bottom: 0 !important;
+}
+
+.lynkui-formtable > tbody > tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lynkui-formtable > tbody > tr:last-child {
+  border-bottom: 0;
+}
+
+.lynkui-formtable > tbody > tr > td {
+  padding: 10px 20px 10px 0;
+  vertical-align: top;
+}
+
+.lynkui-formtable > tbody > tr > td:last-child {
+  padding-right: 0;
+}
+
+.lynkui-formtable.lynkui-formtable-title-right > tbody > tr > td:first-child {
+  text-align: right;
+}
+
+.lynkui-formtable > tbody > tr > td:first-child {
+  font-weight: bold;
+}
+
+.lynkui-formtable tbody > tr.hover:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lynkui-formtable table td,
+.lynkui-formtable table th {
+  padding: 2px 30px 2px 0;
+}
+
+.lynkui-formtable table td:last-child,
+.lynkui-formtable table th:last-child {
+  padding-right: 0 !important;
+}
+
+.lynkui-formtable-space-x0050 td,
+.lynkui-formtable-space-x0050 th {
+  padding: 0.5rem 1rem 0.5rem 0 !important;
+}
+
+.lynkui-formtable-space-x0100 td,
+.lynkui-formtable-space-x0100 th {
+  padding: 1rem 2rem 1rem 0 !important;
+}
+
+.lynkui-formtable .input-group {
+  margin-bottom: 0 !important;
+}

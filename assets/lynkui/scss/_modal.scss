@@ -1,0 +1,124 @@
+#lynkui-modal-bg {
+    position: fixed;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#lynkui-modal {
+    z-index: 2000 !important;
+    position: fixed;
+    display: none;
+    background-color: #fff;
+    // border: 3px solid #777;
+    // -moz-border-radius: 5px;
+    // -webkit-border-radius: 5px;
+    // border-radius: 5px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
+}
+#lynkui-modal a {
+    text-decoration: none;
+}
+.lynkui-modal-header {
+    padding: 5px 10px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #fff;
+    background-color: #343a40;
+    vertical-align: middle !important;
+}
+.lynkui-modal-header .close {
+    float: right;
+    color: #fff;
+    opacity: 0.9;
+    text-shadow: none !important;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.lynkui-modal-header .close:hover {
+    opacity: 0.8;
+}
+
+#lynkui-modal .title {
+    padding: 10px 0;
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.lynkui-modal-body {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+}
+.lynkui-modal-body-page {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 16384px;
+    cursor: default;
+}
+.lynkui-modal-body-pagelet {
+    display: inline-block;
+    position: relative;
+    overflow-y: auto;
+    top: 0;
+    float: left;
+}
+.lynkui-modal-footer {
+    clear: both;
+    margin: 10px;
+    height: 2rem;
+    text-align: right;
+    *zoom: 1;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.lynkui-modal-footer:before,
+.lynkui-modal-footer:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.lynkui-modal-footer:after {
+    clear: both;
+}
+.lynkui-modal-footer .btn {
+    padding: 0.25rem 0.5rem;
+    height: 2rem !important;
+    font-size: 0.875rem !important;
+}
+.lynkui-modal-footer .btn + .btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.lynkui-modal-footer .btn-group .btn + .btn {
+    margin-left: -1px;
+}
+.lynkui-modal-footer .btn-block + .btn-block {
+    margin-left: 0;
+}
+#lynkui-modal-footer-alert {
+    clear: both;
+    border: 0px;
+    border-radius: 0px;
+    margin: 0;
+    padding: calc(0.25rem + 10px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

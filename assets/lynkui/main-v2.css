@@ -1,0 +1,223 @@
+:root {
+    --vui-box-gap: 1.5rem;
+    --vui-link-color: #212529;
+    --vui-link-color-hover: #000000;
+}
+
+.lynkui-container {
+    width: 100%;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.lynkui-gap {
+    padding-top: calc(var(--vui-box-gap) * 0.5);
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: calc(var(--vui-box-gap) * 0.5);
+}
+
+.lynkui-gap-box {
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: calc(var(--vui-box-gap) * 0.5);
+    padding-bottom: calc(var(--vui-box-gap) * 0.5);
+}
+
+.lynkui-gap-box > div,
+.lynkui-gap-box > li,
+.lynkui-gap-box > a,
+.lynkui-gap-item {
+    margin-left: calc(var(--vui-box-gap) * 0.5);
+    margin-top: calc(var(--vui-box-gap) * 0.5);
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.lynkui-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    __margin-top: calc(-1 * var(--vui-box-gap));
+    __margin-right: calc(-0.5 * var(--vui-box-gap));
+    __margin-left: calc(-0.5 * var(--vui-box-gap));
+}
+
+.lynkui-row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    __padding-right: calc(var(--vui-box-gap) * 0.5);
+    __padding-left: calc(var(--vui-box-gap) * 0.5);
+    __margin-top: var(--vui-box-gap);
+}
+
+.lynkui-col {
+    __flex: 1 0 0%;
+    border: 1px solid #ccc;
+}
+
+.lynkui-col-auto {
+    flex: 1 0 auto;
+    width: auto;
+}
+
+.lynkui-nav-item {
+    __background-color: rgba(0, 0, 0, 0.03);
+    __padding: calc(var(--vui-box-gap) * 0.5);
+    border-radius: 3px;
+    __line-height: 150%;
+}
+
+.lynkui-nav-link {
+    __padding: calc(var(--vui-box-gap) * 0.25) calc(var(--vui-box-gap) * 0.5);
+    __line-height: 150%;
+}
+
+.lynkui-nav-item a {
+    color: var(--vui-link-color);
+    text-decoration: none;
+}
+
+.lynkui-nav-item a:hover {
+    color: var(--vui-link-color-hover);
+    text-decoration: none;
+}
+
+.lynkui-nav-item.active {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lynkui-nav-item:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.lynkui-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.lynkui-row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.lynkui-row .cw {
+    flex: 1 0 0%;
+}
+.lynkui-row .cw-2 {
+    flex: 0 0 auto;
+    width: 8.33333333%;
+}
+.lynkui-row .cw-4 {
+    flex: 0 0 auto;
+    width: 16.66666667%;
+}
+.lynkui-row .cw-6 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+.lynkui-row .cw-8 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+.lynkui-row .cw-10 {
+    flex: 0 0 auto;
+    width: 41.66666667%;
+}
+.lynkui-row .cw-12 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+.lynkui-row .cw-14 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+}
+.lynkui-row .cw-16 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+}
+.lynkui-row .cw-18 {
+    flex: 0 0 auto;
+    width: 75%;
+}
+.lynkui-row .cw-20 {
+    flex: 0 0 auto;
+    width: 83.33333333%;
+}
+.lynkui-row .cw-22 {
+    flex: 0 0 auto;
+    width: 91.66666667%;
+}
+.lynkui-row .cw-24 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.table-row {
+    table-layout: auto;
+    width: 100%;
+}
+.table-row > * {
+    _width: 100%;
+    _max-width: 100%;
+}
+
+.table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: normal;
+    word-spacing: normal;
+    line-break: auto;
+    word-wrap: break-word;
+}
+.table-row .cw {
+    width: auto;
+}
+.table-row .cw-2 {
+    width: 8.33333333%;
+    max-width: 8.33333333%;
+}
+.table-row .cw-4 {
+    min-width: 8rem;
+    width: 12rem;
+    max-width: 16rem;
+    _width: 16.66666667%;
+    _max-width: 16.66666667%;
+}
+.table-row .cw-6 {
+    _width: 25%;
+    min-width: 12rem;
+    max-width: 24rem;
+}
+.table-row .cw-8 {
+    width: 33.33333333%;
+}
+.table-row .cw-10 {
+    width: 41.66666667%;
+}
+.table-row .cw-12 {
+    width: 50%;
+}
+.table-row .cw-14 {
+    width: 58.33333333%;
+}
+.table-row .cw-16 {
+    width: 66.66666667%;
+}
+.table-row .cw-18 {
+    width: 75%;
+}
+.table-row .cw-20 {
+    width: 83.33333333%;
+}
+.table-row .cw-22 {
+    width: 91.66666667%;
+}
+.table-row .cw-24 {
+    width: 100%;
+}

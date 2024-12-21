@@ -1,0 +1,73 @@
+.lynkui-formtable,
+.lynkui-formtable table {
+  width: 100%;
+}
+
+.lynkui-formtable table.valign-middle td,
+.lynkui-formtable table.valign-middle th {
+  vertical-align: middle !important;
+}
+
+.lynkui-formtable-row-line,
+.lynkui-formtable-tr-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.lynkui-formtable-tr-line:last-child {
+  border-bottom: 0 !important;
+}
+
+.lynkui-formtable>tbody>tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lynkui-formtable>tbody>tr:last-child {
+  border-bottom: 0;
+}
+
+.lynkui-formtable>tbody>tr>td {
+  padding: 10px 20px 10px 0;
+  vertical-align: top;
+}
+
+.lynkui-formtable>tbody>tr>td:last-child {
+  padding-right: 0;
+}
+
+.lynkui-formtable.lynkui-formtable-title-right>tbody>tr>td:first-child {
+  text-align: right;
+}
+
+.lynkui-formtable>tbody>tr>td:first-child {
+  font-weight: bold;
+}
+
+.lynkui-formtable tbody>tr.hover:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lynkui-formtable table td,
+.lynkui-formtable table th {
+  padding: 2px 30px 2px 0;
+}
+
+.lynkui-formtable table td:last-child,
+.lynkui-formtable table th:last-child {
+  padding-right: 0 !important;
+}
+
+.lynkui-formtable-space-x0050 td,
+.lynkui-formtable-space-x0050 th {
+  padding: 0.50rem 1.00rem 0.50rem 0 !important;
+}
+
+.lynkui-formtable-space-x0100 td,
+.lynkui-formtable-space-x0100 th {
+  padding: 1.00rem 2.00rem 1.00rem 0 !important;
+}
+
+.lynkui-formtable .input-group {
+  margin-bottom: 0 !important;
+}
+

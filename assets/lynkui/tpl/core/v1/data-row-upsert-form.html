@@ -1,0 +1,61 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th width="160px">Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody id="data-row-upsert-field-list"></tbody>
+</table>
+
+<script type="text/html" id="data-row-upsert-field-list-tpl">
+  {[~it.fields :field]}
+  <tr>
+    <td>{[=field.name]}</td>
+    <td id="data-row-upsert-field-form-{[=field.tag_name]}">
+      {[? field._read_only]}
+      <div>{[=field._value]}</div>
+      {[?? field.type == "string" && field.enums && field.enums.length > 0]}
+      <select class="form-select" id="data-row-upsert-field-{[=field.tag_name]}">
+        {[~field.enums :ev]}
+        <option value="{[=ev]}">{[=ev]}</option>
+        {[~]}
+      </select>
+      {[?? field.type == "string"]} {[? field.styles && field.styles.textarea_rows]}
+      <textarea
+        class="form-control"
+        id="data-row-upsert-field-{[=field.tag_name]}"
+        rows="{[=field.styles.textarea_rows]}"
+      >
+        {[=field._value]}
+	  </textarea
+      >
+      {[??]}
+      <input
+        type="text"
+        class="form-control"
+        id="data-row-upsert-field-{[=field.tag_name]}"
+        value="{[=field._value]}"
+      />
+      {[?]} {[?? field.type == "int"]}
+      <input
+        type="text"
+        class="form-control"
+        id="data-row-upsert-field-{[=field.tag_name]}"
+        value=""
+      />
+      {[?]}
+    </td>
+  </tr>
+  {[~]}
+</script>
+
+<script type="text/html" id="data-row-upsert-field-select-tpl">
+  <select class="form-select" id="data-row-upsert-field-{[=it.field.tag_name]}">
+    {[~it.rows :row]}
+    <option value="{[=row.id]}" {[? row._selected]} selected{[?]}>
+      {[=row.fields.display_name]}
+    </option>
+    {[~]}
+  </select>
+</script>

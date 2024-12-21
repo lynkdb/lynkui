@@ -1,0 +1,139 @@
+// Copyright 2024 Eryx <evorui at gmail dot com>, All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package lynkui;
+
+option optimize_for = LITE_RUNTIME;
+option go_package = "github.com/lynkdb/lynkui/go/lynkui;lynkui";
+
+import "lynkapi/data.proto";
+
+message Project {
+  string kind = 1;
+  string name = 2;
+}
+
+// frontend components
+message Pagelet {
+  string kind = 1;
+
+  string name = 2;
+  string display_name = 3;
+
+  map<string, string> args = 4;
+
+  string output = 5;
+
+  TemplateSpec template = 6;
+  DataletSpec datalet = 7;
+
+  repeated Next next_pagelets = 9;
+
+  Event event = 10;
+
+  repeated Tasklet post_tasklets = 32;
+
+  bool exp_data_create_enable = 48;
+  bool exp_data_update_enable = 49;
+
+  message Next {
+    string name = 2;
+  }
+
+  message Event {
+    string name = 1;
+    string pagelet = 2;
+  }
+}
+
+message Tasklet {
+  string nav_click = 4;
+}
+
+message DataLayout {
+  message VirtualTable {
+    string name = 1;
+    // string model = 2;
+    string ref_instance = 8;
+    string ref_table = 9;
+  }
+  repeated VirtualTable tables = 9;
+  repeated lynkapi.DataConnect connects = 12;
+  repeated lynkapi.DataInstance instances = 13;
+}
+
+message DataletSpec {
+  // string kind = 1;
+  // string name = 2;
+
+  // string instance_name = 6;
+  string table_name = 7;
+
+  lynkapi.DataQuery.Filter filter = 11;
+
+  lynkapi.DataQuery query = 8;
+
+  lynkapi.TableSpec table_spec = 10;
+
+  message DisplayField {
+    string name = 1;
+  }
+
+  message ListAction {
+    repeated string display_fields = 2;
+    lynkapi.DataQuery.Filter filter = 11;
+    lynkapi.DataQuery.SortFilter sort = 12;
+  }
+
+  ListAction list = 12;
+}
+
+message TemplateSpec {
+  // string kind = 1;
+  // string name = 2;
+
+  TemplateLayout layout = 9;
+  TemplateNav nav = 10;
+  TemplateTable table = 11;
+  TemplateHtml html = 31;
+}
+
+message TemplateLayout {
+  string name = 1;
+  string align = 3;
+  string width = 4;
+  string height = 5;
+  string style_class = 12;
+  map<string, string> options = 13;
+  repeated TemplateLayout rows = 14;
+  repeated TemplateLayout cols = 15;
+}
+
+message TemplateNav {
+  message Item {
+    string name = 1;
+    string title = 2;
+  }
+  string display = 1;  // `x_enums:"flex-column"`
+  repeated Item items = 9;
+}
+
+message TemplateHtml {
+  string file = 1;
+  string html = 2;
+}
+
+message TemplateTable {}
