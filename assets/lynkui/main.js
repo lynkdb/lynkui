@@ -18,9 +18,9 @@
 (function (global, undefined) {
     "use strict";
 
-	if (!global) {
-		global = window;
-	}
+    if (!global) {
+        global = window;
+    }
     if (global && global.lynkui) {
         return;
     }
@@ -92,8 +92,8 @@
 
         var mods = [
             lynkui.uipath + "/zepto/zepto.js",
-            lynkui.uipath + "/bs/js/bootstrap.js",
-            lynkui.uipath + "/bs/css/bootstrap.css",
+            lynkui.uipath + "/bs/v5/js/bootstrap.js",
+            lynkui.uipath + "/bs/v5/css/bootstrap.css",
             lynkui.uipath + "/lynkui/main.css",
             lynkui.uipath + "/lynkui/main-v2.css",
         ];
@@ -150,6 +150,10 @@
         init(function () {
             seajs.use(mods, cb);
         });
+    };
+
+    lynkui.onload = function (cb) {
+        init(cb);
     };
 
     lynkui.main = function () {
@@ -398,13 +402,13 @@
             return;
         }
         var vl = pagelet.set[x_pagelet];
-		console.log("click pagelet ", vl)
+        console.log("click pagelet ", vl);
         if (!vl || !vl.datalet || !vl.event || vl.event.name != "onclick") {
             return;
         }
         var pl_next = pagelet.set[vl.event.pagelet];
         if (!pl_next || !pl_next.datalet) {
-            console.log("next skip "+ vl.event.pagelet);
+            console.log("next skip " + vl.event.pagelet);
             return;
         }
         pl_next = lynkui.utilx.objectClone(pl_next);
@@ -1626,8 +1630,13 @@
     var _alertTypeClassName = function (type) {
         var type_ui = "info";
         switch (type) {
+            case "success":
             case "ok":
                 type_ui = "success";
+                break;
+
+            case "info":
+                type_ui = "info";
                 break;
 
             case "warn":
@@ -2119,7 +2128,11 @@
                 }
 
                 if (cb) {
-                    cb();
+                    cb(null, {
+                        inlet_width: options.inlet_width,
+                        inlet_height: options.inlet_height,
+                        inlet_height2: _modal.CurOptions.inlet_height,
+                    });
                 }
             }
         );
@@ -3049,11 +3062,11 @@ var _sprintf = function () {
 (function (global, undefined) {
     "use strict";
 
-	if (!global) {
-		global = window;
-	}
+    if (!global) {
+        global = window;
+    }
     if (global.doT) {
-		return;
+        return;
     }
 
     var doT = {
@@ -3080,7 +3093,7 @@ var _sprintf = function () {
         },
         _globals;
 
-    global.doT = doT; 
+    global.doT = doT;
     doT.encodeHTMLSource = function (doNotSkipEncoded) {
         var encodeHTMLRules = {
                 "&": "&#38;",
@@ -3279,9 +3292,9 @@ var _sprintf = function () {
  * Sea.js 2.2.3 | seajs.org/LICENSE.md
  */
 (function (global, undefined) {
-	if (!global) {
-		global = window;
-	}
+    if (!global) {
+        global = window;
+    }
     // Avoid conflicting when `sea.js` is loaded multiple times
     if (global.seajs) {
         return;
@@ -4245,9 +4258,9 @@ var _sprintf = function () {
  */
 (function (global, undefined) {
     "use strict";
-	if (!global) {
-		global = window;
-	}
+    if (!global) {
+        global = window;
+    }
     if (global.EventProxy) {
         return;
     }
