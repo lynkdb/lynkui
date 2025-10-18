@@ -23,6 +23,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
@@ -44,6 +45,8 @@ import (
 type Service interface {
 	MainDataService() lynkapi.DataService
 	DataLayout() data.DataService
+
+	AssetsHandler() http.Handler
 }
 
 type serviceImpl struct {
@@ -77,7 +80,14 @@ func NewService(s *httpsrv.Service, cfg *lynkui.ServiceConfig) (Service, error) 
 	if cfg.AppProjectPath == "" {
 		return nil, fmt.Errorf("app_project_path not setup")
 	}
-	cfg.AppProjectPath = filepath.Clean(cfg.AppProjectPath)
+
+	projPath, err := filepath.Abs(cfg.AppProjectPath)
+	if err != nil {
+		return nil, err
+	}
+
+	cfg.AppProjectPath = filepath.Clean(projPath)
+	hlog.Printf("info", "setup app project path : %s", cfg.AppProjectPath)
 	if _, err := os.Stat(cfg.AppProjectPath); err != nil {
 		return nil, err
 	}
@@ -114,11 +124,33 @@ func NewService(s *httpsrv.Service, cfg *lynkui.ServiceConfig) (Service, error) 
 		}
 	}
 
-	if err := websrv.Setup(s, cfg); err != nil {
-		return nil, err
+	if s != nil {
+		if err := websrv.Setup(s, cfg); err != nil {
+			return nil, err
+		}
 	}
 
 	return service, nil
+}
+
+func (it *serviceImpl) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
+	relpath := filepath.Clean(req.URL.Path)
+	if strings.HasPrefix(relpath, "/lynkui/template/") {
+
+		if tpl := status.Assets.Get(relpath[len("/lynkui/"):]); tpl != nil {
+			if h, ok := tpl.(*lynkui.TemplateHtml); ok {
+				js, _ := json.Marshal(h)
+				wr.Header().Set("Content-Type", "application/json")
+				wr.Write(js)
+				return
+			}
+		}
+	}
+	http.NotFound(wr, req)
+}
+
+func (it *serviceImpl) AssetsHandler() http.Handler {
+	return it
 }
 
 func (it *serviceImpl) MainDataService() lynkapi.DataService {
@@ -132,6 +164,9 @@ func (it *serviceImpl) DataLayout() data.DataService {
 func (it *serviceImpl) init() error {
 
 	if err := data.Init(it.cfg.AppProjectPath + "/lynkui_layout.json"); err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
 		return err
 	}
 
@@ -139,6 +174,9 @@ func (it *serviceImpl) init() error {
 
 	inst, err := oneobject.NewInstanceFromFile("lynkui", it.cfg.AppProjectPath+"/lynkui_data.json", &do)
 	if err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
 		return err
 	}
 

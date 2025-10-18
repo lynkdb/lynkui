@@ -1,4 +1,5 @@
 bin/
 go.sum
 project/
+.DS_Store
 debug-run.sh

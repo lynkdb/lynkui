@@ -261,7 +261,7 @@ func (it *LayoutManager) Query(req *lynkapi.DataQuery) (*lynkapi.DataResult, err
 			return nil, err
 		}
 		if !rs.Status.OK() {
-			return nil, rs.Status.Err()
+			return nil, rs.Status.Error()
 		}
 
 		return rs, nil
@@ -300,7 +300,7 @@ func (it *LayoutManager) Upsert(req *lynkapi.DataInsert) (*lynkapi.DataResult, e
 			return nil, err
 		}
 		if !rs.Status.OK() {
-			return nil, rs.Status.Err()
+			return nil, rs.Status.Error()
 		}
 
 		return rs, nil
