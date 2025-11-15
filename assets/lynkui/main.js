@@ -28,7 +28,8 @@
   var lynkui = (global.lynkui = {
     version: "0.0.2",
     basepath: "/",
-    uipath: "~/lynkui",
+    uipath: "~",
+    internal_uipath: "lynkui/~",
     inited: false,
     tasklet: {},
     pagelet: {
@@ -65,6 +66,7 @@
       position: "center",
       data: {},
     },
+    g_pos: { x: 0, y: 0 },
     utilx: {},
     sessionData: {},
     job: {
@@ -90,12 +92,20 @@
     });
     lynkui.inited = true;
 
+    if (!window.event) {
+      const body = document.querySelector("body");
+      body.addEventListener("mousemove", (e) => {
+        lynkui.g_pos.x = e.pageX;
+        lynkui.g_pos.y = e.pageY;
+      });
+    }
+
     var mods = [
-      lynkui.uipath + "/zepto/zepto.js",
-      lynkui.uipath + "/bs/v5/js/bootstrap.js",
-      lynkui.uipath + "/bs/v5/css/bootstrap.css",
-      lynkui.uipath + "/lynkui/main.css",
-      lynkui.uipath + "/lynkui/main-v2.css",
+      lynkui.internal_uipath + "/zepto/zepto.js",
+      lynkui.internal_uipath + "/bs/v5/js/bootstrap.js",
+      // lynkui.internal_uipath + "/bs/v5/css/bootstrap.css",
+      lynkui.internal_uipath + "/lynkui/main.css",
+      lynkui.internal_uipath + "/lynkui/main-v2.css",
     ];
 
     seajs.use(mods, function () {
@@ -216,7 +226,6 @@
       }
     }
     if (!defaultSelect || !defaultSelect.fields.ext_fields.pagelet) {
-      console.log(defaultSelect);
       return;
     }
 
@@ -299,7 +308,6 @@
 
       pagelet.datalet(vl, function (err, data) {
         if (err) {
-          console.log(err);
           return;
         }
         let box = {
@@ -727,7 +735,7 @@
     let tpluri =
       lynkui.basepath +
       "/" +
-      lynkui.uipath +
+      lynkui.internal_uipath +
       "/lynkui/tpl/core/v1/data-row-upsert-form.html";
 
     lynkui.modal.open({
@@ -812,7 +820,7 @@
       if (!value) {
         continue;
       }
-      console.log("set field " + spec_field.tag_name + " : " + value);
+      // console.log("set field " + spec_field.tag_name + " : " + value);
       fields[spec_field.tag_name] = value;
     }
 
@@ -820,7 +828,7 @@
       req.fields.push(name);
       req.values.push(fields[name]);
     }
-    console.log(req);
+    // console.log(req);
     // return;
 
     var url = lynkui.basepath + "/api/v1/datalet/upsert";
@@ -1152,6 +1160,19 @@
     s.push(s2.join(":"));
 
     return s.join(", ");
+  };
+
+  utilx.pos = function () {
+    if (window.event) {
+      return {
+        left: window.event.pageX,
+        top: window.event.pageY,
+      };
+    }
+    return {
+      left: lynkui.g_pos.x,
+      top: lynkui.g_pos.y,
+    };
   };
 
   utilx.uriQuery = function () {
@@ -1501,6 +1522,13 @@
     return str;
   };
 
+  utilx.trim = function (str, chr) {
+    var re = !chr
+      ? new RegExp("^\\s+|\\s+$", "g")
+      : new RegExp("^" + chr + "+|" + chr + "+$", "g");
+    return str.replace(re, "");
+  };
+
   utilx.errorKindCheck = function (err, obj, apikind) {
     var msg = "";
     if (err) {
@@ -1673,6 +1701,7 @@
         break;
 
       case "error":
+      case "danger":
         type_ui = "danger";
         break;
 
@@ -1771,7 +1800,7 @@
   };
 
   _alert.innerShow = function (obj, type, msg) {
-    if (type == "") {
+    if (!type || type == "") {
       $(obj).hide();
     } else {
       var type_ui = _alertTypeClassName(type);
@@ -2038,7 +2067,7 @@
       left = bw / 2 - options.width / 2;
       top = bh / 2 - options.height / 2;
     } else {
-      var p = l4i.PosGet();
+      var p = lynkui.utilx.pos();
       if (p.left / bw > 0.66 && options.width < bw) {
         left = p.left - options.width + 10;
       } else {
@@ -2208,7 +2237,7 @@
       }
 
       if (!buttons[i].style) {
-        buttons[i].style = "btn-default";
+        buttons[i].style = "btn-outline-dark";
       }
 
       if (buttons[i].href) {
@@ -2781,6 +2810,35 @@
     return str;
   };
 
+  template.renderFromId = function (idto, idfrom, data) {
+    // TODO cache
+    var elem = document.getElementById(idfrom);
+    if (!elem) {
+      return "";
+    }
+    var source = elem.value || elem.innerHTML;
+
+    if (data) {
+      var tempFn = doT.template(source);
+      $("#" + idto).html(tempFn(data));
+    } else {
+      $("#" + idto).html(source);
+    }
+  };
+
+  template.renderById = function (idfrom, data) {
+    // TODO cache
+    var elem = document.getElementById(idfrom);
+    if (!elem) {
+      return "";
+    }
+
+    var source = elem.value || elem.innerHTML;
+    var tempFn = doT.template(source);
+
+    return tempFn(data);
+  };
+
   template.render = function (options) {
     options = options || {};
     if (typeof options.callback !== "function") {
@@ -2811,6 +2869,15 @@
     }
 
     if (options.tplsrc) {
+      // fix: html/js format 中产生的 \n 符号
+      options.tplsrc = options.tplsrc.replace(
+        /{\[(.*?)\]}/gs,
+        (match, innerContent) => {
+          const replacedInner = innerContent.replace(/\n/g, " ");
+          return "{[" + replacedInner + "]}";
+        }
+      );
+
       if (options.i18n) {
         options.tplsrc = lang.TR(options.tplsrc);
       }
